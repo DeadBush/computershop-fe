@@ -3,7 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
-import Header from "@/components/header";
+import Header from "@/components/ui/header";
 import { auth } from "@clerk/nextjs/server";
 
 const roboto = Roboto({subsets: ["latin"], variable: "--font-roboto", weight: "100"});
