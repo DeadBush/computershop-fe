@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/ui/header";
 import { auth } from "@clerk/nextjs/server";
+import Footer from "@/components/ui/footer";
 
 const roboto = Roboto({subsets: ["latin"], variable: "--font-roboto", weight: "100"});
 
@@ -30,6 +31,8 @@ export default function RootLayout({
           <Header userId={userId}></Header>
 
           {children}
+
+          <Footer/>
         </body>
       </html>
     </ClerkProvider>
