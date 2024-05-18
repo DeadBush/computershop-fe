@@ -25,13 +25,13 @@ export interface Products {
     value: string;
   }
   
-  export interface Kitchen {
+  export interface Brand {
     id: string;
     name: string;
     value: string;
   }
   
-  export interface Cuisines {
+  export interface Manufacturer {
     id: string;
     name: string;
     value: string;
