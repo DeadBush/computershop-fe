@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/ui/header";
 import { auth } from "@clerk/nextjs/server";
 import Footer from "@/components/ui/footer";
+import ToastProvider from "@/providers/toast-provider";
 
 const roboto = Roboto({subsets: ["latin"], variable: "--font-roboto", weight: "100"});
 
@@ -25,7 +26,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={cn("bg-background initialized", roboto.variable)}>
-          
+          <ToastProvider/>
           <img src="/img/graphic.svg" className ="absolute -z-10 top-0 right-0 w-full md:w-[60%]"alt="" />
 
           <Header userId={userId}></Header>

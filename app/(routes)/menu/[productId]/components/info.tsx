@@ -1,13 +1,31 @@
 "use client"
 
+import { Button } from "@/components/ui/button";
+import useCart from "@/hooks/use-carts";
+import { cn } from "@/lib/utils";
 import { Products } from "@/type-db";
-import { Factory, GroupIcon, List, SquareActivity } from "lucide-react";
+import { Factory, GroupIcon, List, ShoppingCart, SquareActivity } from "lucide-react";
+import { useState } from "react";
 
 interface InfoProps {
     product : Products;
 }
 
 const Info = ({product}: InfoProps) => {
+
+    const [qty, setQty] = useState(1)
+
+    const cart = useCart();
+
+    const handleQty = (num:number)=>{
+        setQty(num);
+        cart.updateItemQuantity(product.id, num)
+    }
+
+    const addToCart = (data:Products) =>{
+        cart.addItem({...data, qty : qty})
+    }
+
     return (
     <div>
         <h1 className="text-3xl font-bold text-neutral-800">{product.name}</h1>
@@ -45,8 +63,29 @@ const Info = ({product}: InfoProps) => {
         </div>
 
         <div className="w-full grid grid-cols-4 my-12">
-            <div className="col-span-1 space-y-8"></div>
+            <div className="col-span-1 space-y-8">
+                <p className="text-lg font-semibold text-neutral-700">Giá</p>
+                <p className="text-lg font-semibold text-neutral-700">Số lượng</p>
+            </div>
+            <div className="col-span-3 space-y-8">
+                <p className="text-xl font-bold text-black">${product.price}</p>
+                <div className="flex items-center gap-2">
+                {
+                    [1,2,3,4,5].map(num => (
+                        <div 
+                        key={num} 
+                        className={cn(
+                            "w-8 h-8 cursor-pointer rounded-full flex items-center justify-center border border-hero", qty === num ? "bg-hero shadow-md text-white" : "bg-transparent shadow-none")}
+                            onClick={()=>handleQty(num)}
+                            >
+                            {num}
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
+
+        <Button onClick={()=>addToCart(product)} className="w-full py-6 text-xl font-semibold hover:bg-hero hover:text-white flex items-center justify-center gap-3">Thêm vào giỏ hàng <ShoppingCart className="w-4 h-4"/></Button>
     </div>
     );
 }

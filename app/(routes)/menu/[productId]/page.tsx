@@ -6,6 +6,7 @@ import { ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
 import Gallery from "./components/gallery/gallery";
 import Info from "./components/info";
+import SuggestedList from "./components/suggested-lists";
 
 interface ProductPageProps{
     params:{
@@ -15,7 +16,7 @@ interface ProductPageProps{
 
 const ProductPage = async ({params}: ProductPageProps) => {
     const product = await  getProduct(params.productId);
-    const suggestedproducts = await getProducts({category : product?.category})
+    const suggestedProducts = await getProducts({category : product?.category})
 
     return(<div>
         <Container className="bg-white rounded-lg my-4 px-4">
@@ -39,6 +40,8 @@ const ProductPage = async ({params}: ProductPageProps) => {
                         <Info product={product}/>
                     </div>
                 </div>
+                
+                <SuggestedList products = {suggestedProducts}/>
             </div>
         </Container>
     </div>);
