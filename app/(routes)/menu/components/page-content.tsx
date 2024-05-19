@@ -1,8 +1,9 @@
 "use client"
 
 import Box from "@/components/ui/box";
+import { PopularContent } from "@/components/ui/popular-content";
 import { Products } from "@/type-db";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home, Key, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string"
@@ -42,8 +43,49 @@ const PageContent = ({products}:PageContentProps) => {
                 <Link href={"/menu"} className="flex items-center gap-2">
                     Sản phẩm
                 </Link>
+
+                {searchParams.get("category") && (
+                    <>
+                        <ChevronRight className="w-5 h-5 text-muted-foreground"/>
+                        <Link href={"/menu"} className="flex items-center gap-2">
+                        {searchParams.get("category")}
+                        </Link>
+                    </>
+                )}
+            </Box>
+
+            <Box className="mt-8 flex-col items-start">
+                {searchParams.get("category") && (
+                    <h2 className="flex items-center gap-2 text-3xl font-semibold text-neutral-600">{searchParams.get("category")}</h2>
+                )}
+
+                <Box className="gap-3 my-4">
+                    {currentParams && (
+                        Object.entries(currentParams).map(([key,value]) => (
+                            <div onClick = {() => handleClick(key)} className="px-4 py-1 cursor-pointer hover:shadow-md rounded-md bg-emerald-500/10 text-neutral-600 flex items-center gap-1">
+                                {value}
+
+                                <X className="w-4 h-4"/>
+                            </div>
+                        ))
+                    )}
+                </Box>
             </Box>
         </Box>
+
+        <div className="grid grid-cols-2 lg:grid-cols-3 w-full h-full gap-4 gap-y-24">
+            {products.length > 0? <>
+            {
+                products.map(product => (
+                    <PopularContent data={product} key={product.id}/>
+                ))
+            }
+            </> : <>
+            <Box className="items-center justify-center py-12 text-muted-foreground text-xl font-bold col-span-10">
+                Sản phẩm không hiện có
+            </Box>
+            </>}
+        </div>
     </>
 };
 
