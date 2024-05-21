@@ -1,8 +1,11 @@
 "use client"
 
 import Box from "@/components/ui/box";
+import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/use-carts";
+import { cn } from "@/lib/utils";
 import { Products } from "@/type-db";
+import { Trash } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -56,9 +59,33 @@ const CartItem = ({item}:CartItemProps) => {
                 </div>
             )}
         </div>
+    </div>
 
+        <Box className="flex items-center justify=center h-full">
+        <div className="flex items-center gap-2">
+        {
+                    [1,2,3,4,5].map(num => (
+                        <div 
+                        key={num} 
+                        className={cn(
+                            "w-8 h-8 cursor-pointer rounded-full flex items-center justify-center border border-hero", qty === num ? "bg-hero shadow-md text-white" : "bg-transparent shadow-none")}
+                            onClick={()=>handleQty(num)}
+                            >
+                            {num}
+                        </div>
+                    ))}
+            </div>  
+        </Box>
+
+        <Box className="flex items-center justify-center h-full">
+            <h2>${item.price * item.qty}</h2>
+        </Box>
+
+        <div onClick={()=>cart.removeItem(item.id)} className="w-auto m-auto">
+            <Trash className="h-4 w-4 cursor-pointer text-muted-foreground hover:text-red-500"/>
         </div>
-    </Box>);
+    </Box>
+    );
 }
 
 export default CartItem;

@@ -7,6 +7,8 @@ import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import CartItem from "./cart-item";
+import Box from "@/components/ui/box";
+import { Separator } from "@/components/ui/separator";
 
 interface CartContentProps{
     userId: string | null
@@ -30,6 +32,11 @@ const CartContent = ({userId} : CartContentProps) =>{
             toast.error("Có gì đó sai sai");
         }
     },[searchParams, cart.removeAll]);
+
+    const onCheckOut = async () =>{
+        
+    };
+
     return(
         <>
             <div className="w-full flex items-center justify-between gap-4">
@@ -55,7 +62,30 @@ const CartContent = ({userId} : CartContentProps) =>{
                         ))}
                     </div>
                 </div>
-                <div className="col-span-4"></div>
+                <div className="col-span-4 space-y-8">
+                    <Box className="flex-col items-start justify-start gap-2 shadow-lg rounded-lg p-3 space-y-2 bg-slate-50">
+                        <h2 className="text-lg text-neutral-700 font-semibold">
+                            Tóm tắt đơn hàng
+                        </h2>
+
+                        <Separator />
+
+                        <Box className="flex-col space-y-2">
+                            <div className="flex items-center justify-between w-full px-4 whitespace-nowrap text-muted-foreground">
+                                <p className="text-black font-bold text-base">Tổng cộng</p>
+                                <p className="font-semibold text-2xl text-black">${totalPrice}</p>
+                            </div>
+                        </Box>
+                    </Box>
+
+                    <Box className="flex-col items-start justify-start gap-2 shadow-lg rounded-lg p-3 space-y-2 bg-slate-50">
+                        <h2 className="text-lg text-neutral-700 font-semibold">Thanh toán</h2>
+
+                        <Separator/>
+
+                        <Button className="w-full" onClick={onCheckOut}>Thanh toán</Button>
+                    </Box>
+                </div>
             </div>
         </>
     );
