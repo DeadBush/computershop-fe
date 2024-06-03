@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import CartItem from "./cart-item";
 import Box from "@/components/ui/box";
 import { Separator } from "@/components/ui/separator";
+import axios from "axios";
 
 interface CartContentProps{
     userId: string | null
@@ -26,7 +27,8 @@ const CartContent = ({userId} : CartContentProps) =>{
 
     useEffect(()=>{
         if(searchParams.get("success")){
-            toast.success("Giao dịch thành công")
+            toast.success("Giao dịch thành công");
+            cart.removeAll();
         }
         if(searchParams.get("canceled")){
             toast.error("Có gì đó sai sai");
@@ -34,7 +36,14 @@ const CartContent = ({userId} : CartContentProps) =>{
     },[searchParams, cart.removeAll]);
 
     const onCheckOut = async () =>{
-        
+        const response  = await axios.post(
+            `${process.env.NEXT_PUBLIC_APP_URL}/checkout`,{
+                product : cart.items,
+                userId
+            }
+        )
+
+        window.location = response.data.url 
     };
 
     return(
