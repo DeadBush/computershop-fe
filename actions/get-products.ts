@@ -1,7 +1,7 @@
 import { Products } from "@/type-db";
 import qs from "query-string"
 
-const URL = `${process.env.NEXT_PUBLIC_APP_URL}/products`;
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
 
 interface Query{
     size?: string;
