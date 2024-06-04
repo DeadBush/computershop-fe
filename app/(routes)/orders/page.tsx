@@ -6,13 +6,17 @@ import { ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
 import PageContent from "../menu/components/page-content";
 
+export const revalidate = 0;
+
 const OrdersPage =  async() =>{
 
     const orders = await getOrders();
     const{userId}= auth();
 
-    const formattedOrders = orders.filter(item => item.userId === userId);
-    return <Container className="px-4 md:px-12 my-12 bg-white py-12 min-h-[80vh]">
+    const formattedOrders = orders.filter((item) => item.userId === userId);
+
+    return (
+    <Container className="px-4 md:px-12 my-12 bg-white py-12 min-h-[80vh]">
         <Box className="text-neutral-700 text-sm items-center">
             <Link href="/" className="flex items-center gap-2">
                 <Home className="w-5 h-5"/> Trang chủ
@@ -23,10 +27,12 @@ const OrdersPage =  async() =>{
                 Đơn hàng của tôi
             </p>
         </Box>
-        <h2 className="my-4 text-xl font-semibold text-neutral-700"> Đơn hàng của tôi</h2>
-
-        <PageContent/>
+        <h2 className="my-4 text-xl font-semibold text-neutral-700"> 
+        Đơn hàng của tôi
+        </h2>   
+        <PageContent orders = {formattedOrders}/>
     </Container>
-};
+    );
+};  
 
 export default OrdersPage;
