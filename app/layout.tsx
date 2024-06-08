@@ -11,8 +11,8 @@ import ToastProvider from "@/providers/toast-provider";
 const roboto = Roboto({subsets: ["latin"], variable: "--font-roboto", weight: "100"});
 
 export const metadata: Metadata = {
-  title: "Online Car Shop",
-  description: "Car Selling Webapp",
+  title: "Bich Huyen's Computer Shop",
+  description: "Computer Sale Webapp",
 };
 
 export default function RootLayout({

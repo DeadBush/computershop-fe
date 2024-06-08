@@ -10,9 +10,9 @@ const Footer = () =>{
               <h2 className="text-3xl font-semibold">Menu</h2>
               <p className="text-neutral-500 text-sm">Home</p>
               <p className="text-neutral-500 text-sm">Tại sao lại chọn chúng tôi ?</p>
-              <p className="text-neutral-500 text-sm">Dòng xe đặt biệt</p>
-              <p className="text-neutral-500 text-sm">Dòng xe thường</p>
-              <p className="text-neutral-500 text-sm">Hiệu xe nổi bật</p>
+              <p className="text-neutral-500 text-sm">Máy tính gaming</p>
+              <p className="text-neutral-500 text-sm">Máy tính thường</p>
+              <p className="text-neutral-500 text-sm">Máy tính nổi bật</p>
             </div>
   
             <div className="flex flex-col items-start justify-start gap-3">
@@ -25,7 +25,7 @@ const Footer = () =>{
             <div className="flex flex-col items-start justify-start gap-3">
               <h2 className="text-3xl font-semibold">Liên hệ</h2>
               <p className="text-neutral-500 text-sm">+000 0000 0000</p>
-              <p className="text-neutral-500 text-sm">info@onlinecarshop.com</p>
+              <p className="text-neutral-500 text-sm">info@bichhuyencomputershhop.com</p>
               <p className="text-neutral-500 text-sm">6 Linh Trung, TP. Thủ Đức</p>
             </div>
   
