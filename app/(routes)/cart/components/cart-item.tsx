@@ -19,7 +19,7 @@ const CartItem = ({item}:CartItemProps) => {
 
     const cart = useCart()
 
-    const handleQty = (num:number)=>{
+    const handleQty = (num:any)=>{
         setQty(num);
         cart.updateItemQuantity(item.id, num)
     }
@@ -63,17 +63,9 @@ const CartItem = ({item}:CartItemProps) => {
 
         <Box className="flex items-center justify=center h-full">
         <div className="flex items-center gap-2">
-        {
-                    [1,2,3,4,5].map(num => (
-                        <div 
-                        key={num} 
-                        className={cn(
-                            "w-8 h-8 cursor-pointer rounded-full flex items-center justify-center border border-hero", qty === num ? "bg-hero shadow-md text-white" : "bg-transparent shadow-none")}
-                            onClick={()=>handleQty(num)}
-                            >
-                            {num}
-                        </div>
-                    ))}
+        <form>
+            <input type="number"min={1} value={item.qty} onChange={(e)=> handleQty(e.target.value)}/>
+        </form>
             </div>  
         </Box>
 
